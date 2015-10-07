@@ -14,6 +14,20 @@ There are a few interesting traits to provide some magic for the code.
 
 An implicit for the Selenium driver is created by the DriverSelector trait.  The trait uses a `javaOption` called `browser` to instantiate the correct Selenium driver.  By default, it creates a PhantomJS driver.
 
+I'm temporarily grabbing the phantomjs binary from [here](https://github.com/eugene1g/phantomjs/releases) for Mac OSX
+   Yosemite as the official driver has a Yosemite bug.
+   
+I'm grabbing the Chrome driver from [here](https://code.google.com/p/selenium/wiki/ChromeDriver)
+
+| Value | Driver Used |
+| ----------|------------------|
+| *none* | PhantomJS |
+| `chrome` | ChromeDriver |
+| `firefox` | FirefoxDriver |
+| `safari` | SafariDriver |
+| `ie` | InternetExplorerDriver | 
+
+
 ## Per Environment Configuration
 
 With any BDD tests, one oftens needs to define environment specific settings that faciliate testing.  The `Configurator` trait keys off of a `javaOption` called `env` to set vals within the trait.  This includes setting a `baseAppUrl` which is the prefix for the `Page Object` URLs. 
