@@ -34,5 +34,4 @@ libraryDependencies ++= {
 }
 
 javaOptions += "-Dphantomjs.binary.path=/usr/local/bin/phantomjs -Dwebdriver.chrome.driver=drivers/chromedriver"
-//javaOptions += "-Dwebdriver.chrome.driver=drivers/chromedriver"
 
