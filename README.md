@@ -40,3 +40,6 @@ Each page or significant portion of a page will have an associated page class th
 
 The tests themselves are in `Spec` files using the FlatSpec test style.
 
+# Running Tests
+
+I'm currently specifying `VM Parameters` in the `Run Configuration` as I run the Spec files.  I use `-Dbrowser=chrome -Denv=dev`.
