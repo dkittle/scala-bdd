@@ -4,3 +4,25 @@ I'm working on a project structure which executes selenium tests against a web a
 
 # Project setup
 
+One needs to have at least one Selenium driver downloaded and installed on your development machine.  There is a `javaOptions` line in `build.sbt` which tells Selenium the path to the driver.
+ 
+# Project internals
+
+There are a few interesting traits to provide some magic for the code.
+
+## Driver Selection
+
+An implicit for the Selenium driver is created by the DriverSelector trait.  The trait uses a `javaOption` called `browser` to instantiate the correct Selenium driver.  By default, it creates a PhantomJS driver.
+
+## Per Environment Configuration
+
+With any BDD tests, one oftens needs to define environment specific settings that faciliate testing.  The `Configurator` trait keys off of a `javaOption` called `env` to set vals within the trait.  This includes setting a `baseAppUrl` which is the prefix for the `Page Object` URLs. 
+
+# Page Objects
+
+Each page or significant portion of a page will have an associated page class that encapsulates access to elements of the page or encapsulates interactions with the page.
+
+# The BDD Tests
+
+The tests themselves are in `Spec` files using the FlatSpec test style.
+

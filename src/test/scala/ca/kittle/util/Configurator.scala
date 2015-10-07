@@ -2,8 +2,8 @@ package ca.kittle.util
 
 trait Configurator {
 
-  implicit val baseUrl = selectBaseUrl
-  implicit val credentials = selectCredentials
+  implicit val baseAppUrl = selectBaseUrl()
+  implicit val credentials = selectCredentials()
   implicit val currentUser = selectDefaultUser()
 
   private def selectBaseUrl(): String = {

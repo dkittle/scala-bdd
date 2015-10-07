@@ -5,7 +5,7 @@ import org.scalatest.selenium.Page
 
 class HomePage extends Page with SeleniumShared {
 
-  val url = baseUrl
+  val url = baseAppUrl
   val pageTitle = "Kijiji: Free Classifieds in Toronto (GTA)"
 
   def clickFurniture(): Boolean = {

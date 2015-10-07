@@ -5,7 +5,7 @@ import org.scalatest.selenium.Page
 
 class LocationPage extends Page with SeleniumShared {
 
-  val url = baseUrl
+  val url = baseAppUrl
   val pageTitle = "Kijiji"
 
   def checkForLocationMenu() = {
