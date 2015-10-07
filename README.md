@@ -14,6 +14,8 @@ There are a few interesting traits to provide some magic for the code.
 
 An implicit for the Selenium driver is created by the DriverSelector trait.  The trait uses a `javaOption` called `browser` to instantiate the correct Selenium driver.  By default, it creates a PhantomJS driver.
 
+Driver selection is structure in such a way where using the trait should not create more than one instance of a driver.
+
 I'm temporarily grabbing the phantomjs binary from [here](https://github.com/eugene1g/phantomjs/releases) for Mac OSX
    Yosemite as the official driver has a Yosemite bug.
    
