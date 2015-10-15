@@ -18,21 +18,21 @@ trait Configurator {
 
   private def selectCredentials(): (String, String) = {
     Option(System.getProperty("env")).map { _.toLowerCase } match {
-      case Some("dev") => ("testuser", "12345678")
-      case Some("test") => ("testuser", "12345678")
-      case Some("uat") => ("testuser", "12345678")
-      case Some("prod") => ("donkittle", "nottelling")
-      case _ => ("newuser", "12345678")
+      case Some("dev") => ("don@kittle.ca", "foo")
+      case Some("test") => ("don@kittle.ca", "foo")
+      case Some("uat") => ("don@kittle.ca", "foo")
+      case Some("prod") => ("don@kittle.ca", "foo")
+      case _ => ("don@kittle.ca", "foo")
     }
   }
 
   private def selectDefaultUser(): String = {
     Option(System.getProperty("env")).map { _.toLowerCase } match {
-      case Some("dev") => "Don Kittle"
-      case Some("test") => "Don Kittle"
-      case Some("uat") => "Don Kittle"
-      case Some("prod") => "Don Kittle"
-      case _ => "Don Kittle"
+      case Some("dev") => "dkittle"
+      case Some("test") => "dkittle"
+      case Some("uat") => "dkittle"
+      case Some("prod") => "dkittle"
+      case _ => "dkittle"
     }
   }
 

@@ -12,4 +12,14 @@ class HomePage extends Page with SeleniumShared {
     clickOnLinkByText("furniture")
   }
 
+  def clickSignIn(): Boolean = {
+    clickOnLinkById("SignInLink")
+  }
+
+  def login(username: String, password: String): Boolean = {
+    textField(id("LoginEmailOrNickname")).value = username
+    pwdField(id("login-password")).value = password
+    clickOnLinkById("SignInButton")
+  }
+
 }

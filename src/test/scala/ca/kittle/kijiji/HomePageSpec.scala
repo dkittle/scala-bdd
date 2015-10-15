@@ -1,14 +1,16 @@
 package ca.kittle.kijiji
 
 import ca.kittle.kijiji.pages.{LocationPage, HomePage}
-import ca.kittle.util.SeleniumScalaTestSupport
+import ca.kittle.kijiji.steps.HomePageSteps
+import ca.kittle.util.{Configurator, SeleniumScalaTestSupport}
 
 
-class HomePageSpec extends SeleniumScalaTestSupport {
+class HomePageSpec extends SeleniumScalaTestSupport with Configurator {
 
   val homePage = new HomePage
   val locationPage = new LocationPage
-  
+  val homePageSteps = new HomePageSteps(homePage, locationPage)
+
   "Navigating to homepage with no location cookie" should "redirect to the location page" in {
     go to homePage
     currentUrl should be (locationPage.url)
@@ -16,15 +18,18 @@ class HomePageSpec extends SeleniumScalaTestSupport {
   }
 
   "Picking Toronto GTA" should "display homepage with Toronto/GTA set as location" in {
-    go to homePage
+    homePageSteps chooseGTALocation()
+  }
 
-    locationPage checkForLocationMenu() should not be None
-    locationPage clickOntarioMZ() should be (true)
-    locationPage clickTorontoGta() should be (true)
-    locationPage clickGo() should be (true)
+  "foo" should "cheese" in {
+    homePage clickSignIn() should be (true)
+    eventually {
+      find(id("LoginEmailOrNickname")) should not be (None)
+    }
+    homePage.login(credentials._1, credentials._2) should be (true)
 
     eventually {
-      pageTitle should include (homePage.pageTitle)
+      find(className("user-name")).get.text should include (currentUser)
     }
   }
 
