@@ -1,36 +1,51 @@
 package ca.kittle.kijiji
 
-import ca.kittle.kijiji.pages.{LocationPage, HomePage}
+import bdd.util.SeleniumSupport
+import ca.kittle.kijiji.pages.{HomePage, LocationPage}
 import ca.kittle.kijiji.steps.HomePageSteps
 import ca.kittle.util.{Configurator, SeleniumScalaTestSupport}
 
 
-class HomePageSpec extends SeleniumScalaTestSupport with Configurator {
+class HomePageSpec extends SeleniumSupport {
 
   val homePage = new HomePage
   val locationPage = new LocationPage
-  val homePageSteps = new HomePageSteps(homePage, locationPage)
 
-  "Navigating to homepage with no location cookie" should "redirect to the location page" in {
-    go to homePage
-    currentUrl should be (locationPage.url)
-    pageTitle should include (locationPage.pageTitle)
-  }
+  info("Story: Hit Kijiji homepage and be prompted to select a location")
 
-  "Picking Toronto GTA" should "display homepage with Toronto/GTA set as location" in {
-    homePageSteps chooseGTALocation()
-  }
+  go to homePage
+  currentUrl should be (locationPage.url)
+  pageTitle should include (locationPage.pageTitle)
 
-  "foo" should "cheese" in {
-    homePage clickSignIn() should be (true)
-    eventually {
-      find(id("LoginEmailOrNickname")) should not be (None)
+
+  feature("Select your location"){
+    scenario("Setting your location to Toronto/GTA should show Toronto listings"){
+      Given("user navigates to the kijiji.ca website without a cookie")
+      locationPage checkForLocationMenu()
+      When("I click on Ontario M-Z")
+      locationPage clickOntarioMZ()
+      And("I click on Toronto/Gta")
+      locationPage clickTorontoGta()
+      And("I click on all Gta")
+      locationPage clickAllGta()
+      Then("")
+      eventually {
+        pageTitle should contain (homePage.torontoPageTitle)
+      }
     }
-    homePage.login(credentials._1, credentials._2) should be (true)
-
-    eventually {
-      find(className("user-name")).get.text should include (currentUser)
-    }
   }
+
+
+//  "foo" should "cheese" in {
+//    homePage clickSignIn() should be (true)
+//    eventually {
+//      find(id("LoginEmailOrNickname")) should not be (None)
+//    }
+//    homePage.login(credentials._1, credentials._2) should be (true)
+//
+//    eventually {
+//      find(className("user-name")).get.text should include (currentUser)
+//    }
+//  }
 
 }

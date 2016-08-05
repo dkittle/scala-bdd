@@ -1,27 +1,28 @@
 package ca.kittle.kijiji.pages
 
+import bdd.util.SeleniumSupport
 import ca.kittle.util.SeleniumShared
 import org.scalatest.selenium.Page
 
-class LocationPage extends Page with SeleniumShared {
+class LocationPage extends SeleniumSupport with Page {
 
-  val url = baseAppUrl
+  val url = conf.getString("app.baseUrl")
   val pageTitle = "Kijiji"
 
   def checkForLocationMenu() = {
     find(id("LocationMenus"))
   }
 
-  def clickOntarioMZ(): Boolean = {
-    clickOnLinkByText("Ontario (M - Z)")
+  def clickOntarioMZ() = {
+    click on linkText("Ontario (M - Z)")
   }
 
-  def clickTorontoGta(): Boolean = {
-    clickOnLinkByText("Toronto (GTA)")
+  def clickTorontoGta() = {
+    click on linkText("Toronto (GTA)")
   }
 
-  def clickGo(): Boolean = {
-    clickOnLinkById("LocUpdate")
+  def clickAllGta() = {
+    click on linkText("All of Toronto (GTA)")
   }
 
  }
